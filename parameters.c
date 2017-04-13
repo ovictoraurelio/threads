@@ -16,7 +16,7 @@ typedef struct p {
 
 // Another thread that will be called
 void *threadPARAMETER(void *arg){
-    person *me = arg;
+    person *me = (person*) arg;
 
     printf("Hi! My name is %s and I have %d years old\n", me->name, me->age);
     pthread_exit(NULL);
@@ -29,7 +29,6 @@ int main (int argc, char *argv[]){
     person me;
     me.age = 19;
     strcpy(me.name, "Victor Aurelio");
-
 
     if( pthread_create(&thread, NULL, threadPARAMETER, (void*) &me)  ){
         printf("Something wrong! The system failed to creat our thread");
